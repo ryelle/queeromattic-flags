@@ -1,18 +1,19 @@
+/**
+ * External dependencies
+ */
 import React, { Component } from 'react';
-import logo from './logo.svg';
+
+/**
+ * Internal dependencies
+ */
+import Flag from './flag';
 
 class App extends Component {
 	render() {
+		const colors = ['#61CDF6', '#F7ABB8', '#F4F4F5'];
 		return (
 			<div className="App">
-				<header className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				<p className="App-intro">
-					To get started, edit <code>src/App.js</code> and save to
-					reload.
-				</p>
+				<Flag colors={colors} />
 			</div>
 		);
 	}
