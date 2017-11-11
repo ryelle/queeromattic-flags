@@ -1,51 +1,61 @@
+/**
+ * External dependencies
+ */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+function getColorsForLayout(colors, layout) {
+	// switch layout {}
+	return colors;
+}
 
 class Flag extends Component {
-	renderThree = () => {};
-
-	renderFive = colors => {
-		return [
-			<polygon
-				key="row-1"
-				fill={colors[0]}
-				points="327.7,185.4 333.5,229.1 445.1,215.4 439.2,171.5 "
-			/>,
-			<path
-				key="row-2"
-				fill={colors[1]}
-				d="M339.4,274l111.5-13.7l-5.8-44.9l-111.6,13.7L339.4,274z"
-			/>,
-			<polygon
-				key="row-3"
-				fill={colors[2]}
-				points="339.3,273.6 339.4,274 450.9,260.3 456.7,304.1 345.2,318.1 "
-			/>,
-			<path
-				key="row-4"
-				fill={colors[1]}
-				d="M462.4,347.1l-5.7-43l-111.5,14c1.1,7.9-0.2,15.8-1.5,19.3c-3.4,8.6-11,14.9-20.1,16.6l-1.7,0.2 c-12.1,1.6-18.6,8.1-21.2,15L462.6,348L462.4,347.1z"
-			/>,
-			<path
-				key="row-5"
-				fill={colors[0]}
-				d="M468,391.4l-5.4-43.4l-161.9,21.3c-2.6,5-3.6,10.7-2.8,16.3c2,15.3,16,26,31.3,24L468,391.4z"
-			/>,
-		];
+	static propTypes = {
+		colors: PropTypes.array.isRequired,
+		layout: PropTypes.string.isRequired,
 	};
 
-	renderSix = () => {};
+	static defaultProps = {
+		layout: 'rainbow',
+	};
 
-	renderRows = () => {
-		let { colors } = this.props;
-		if (!colors) {
-			return;
-		}
-		return this.renderFive(colors);
+	renderRows = colors => {
+		const offsetX = 240;
+		const offsetY = 243;
+		const heightRow = 200 / colors.length;
+		const lines = 'h240 v110 h-240 Z';
+		return (
+			<g mask="url(#flag-stripes)">
+				{colors.map((color, i) => {
+					const y = offsetY + heightRow * i;
+					return (
+						<path
+							key={`row-${i}`}
+							fill={color}
+							d={`M ${offsetX}, ${y} ${lines}`}
+							transform="rotate(-7)"
+						/>
+					);
+				})}
+			</g>
+		);
 	};
 
 	render() {
+		const { colors, layout } = this.props;
+		const useColors = getColorsForLayout(colors, layout);
 		return (
 			<svg viewBox="0 0 540 482">
+				<defs>
+					<mask id="flag-stripes">
+						<path
+							fill="white"
+							transform="translate(297,170)"
+							d="M3.7,199.2c2.6-6.9,9.1-13.4,21.2-15l1.7-0.2c9.1-1.7,16.7-8,20.1-16.6c1.3-3.5,2.6-11.4,1.5-19.3l-5.9-44.5l0.1,0.4l-5.9-44.9l-5.8-43.7L142.2,1.5l5.9,43.9l5.8,44.9l5.8,43.8l5.7,43l0.2,0.9l5.4,43.4L32.2,239.6c-15.3,2-29.3-8.7-31.3-24C0.1,210,1.1,204.3,3.7,199.2"
+						/>
+					</mask>
+				</defs>
+				{this.renderRows(useColors)}
 				<g>
 					<path fill="#546670" d="M78,103h11.3v306.8H78V103z" />
 					<circle fill="#546670" cx="83.7" cy="83.5" r="11.7" />
@@ -71,7 +81,6 @@ class Flag extends Component {
 					c0.7,5.8-0.7,12.8-2.4,22.5l-4,23.3L218.8,165.2z M268.7,158.3c21.5,30,15.2,71.6-14.1,93.9l13.2-62.2c2.7-10.1,3-18,2.1-24.8
 					C269.6,162.9,269.2,160.6,268.7,158.3"
 				/>
-				{this.renderRows()}
 			</svg>
 		);
 	}
