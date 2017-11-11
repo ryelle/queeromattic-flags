@@ -14,6 +14,8 @@ class App extends Component {
 		return (
 			<div className="App">
 				<Flag colors={GAY_COLORS} />
+				<Flag colors={BI_COLORS} />
+				<Flag colors={TRANS_COLORS} />
 			</div>
 		);
 	}
