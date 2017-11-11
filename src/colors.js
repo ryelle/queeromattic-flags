@@ -15,10 +15,10 @@ export const BI_COLORS = [
 ];
 
 export const GAY_COLORS = [
-	'#8B79B8',
-	'#3EA7D5',
-	'#74B95C',
-	'#FDB813',
-	'#F47C3B',
 	'#DF4C3E',
+	'#F47C3B',
+	'#FDB813',
+	'#74B95C',
+	'#3EA7D5',
+	'#8B79B8',
 ];
