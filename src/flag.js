@@ -23,7 +23,7 @@ class Flag extends Component {
 		const offsetX = 240;
 		const offsetY = 243;
 		const heightRow = 200 / colors.length;
-		const lines = 'h240 v110 h-240 Z';
+		const lines = `h220 v${heightRow + 10} h-220 Z`;
 		return (
 			<g mask="url(#flag-stripes)">
 				{colors.map((color, i) => {
