@@ -1,4 +1,34 @@
+.app {
+	max-width: 800px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 500px;
+	grid-gap: 0 50px;
+}
+
+.form {
+	grid-column: 1;
+	padding-top: 100px;
+}
+
 svg {
 	max-width: 500px;
 	height: auto;
+	grid-column: 2;
+}
+
+.form-field {
+	display: grid;
+	grid-template-columns: 1fr 80px;
+	grid-gap: 0 20px;
+}
+
+.form-label {
+	grid-column: 1;
+}
+
+.form-input {
+	grid-column: 2;
+	align-self: center;
+	font-size: 18px;
 }
