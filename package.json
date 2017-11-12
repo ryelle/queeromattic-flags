@@ -1,22 +1,23 @@
 {
-	"name": "queer-flags",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"node-sass-chokidar": "^0.0.3",
-		"react": "^16.1.0",
-		"react-dom": "^16.1.0",
-		"react-scripts": "1.0.17"
-	},
-	"scripts": {
-		"build-css": "node-sass-chokidar src/scss/index.scss src/style.css",
-		"watch-css":
-			"npm run build-css && node-sass-chokidar src/scss/index.scss src/style.css --watch",
-		"start-js": "react-scripts start",
-		"start": "npm-run-all -p watch-css start-js",
-		"build-js": "react-scripts build",
-		"build": "npm-run-all build-css build-js",
-		"test": "react-scripts test --env=jsdom",
-		"eject": "react-scripts eject"
-	}
+  "name": "queer-flags",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "gridicons": "^2.1.0",
+    "node-sass-chokidar": "^0.0.3",
+    "react": "^16.1.0",
+    "react-color": "^2.13.8",
+    "react-dom": "^16.1.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar src/scss/index.scss src/style.css",
+    "watch-css": "npm run build-css && node-sass-chokidar src/scss/index.scss src/style.css --watch",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
 }

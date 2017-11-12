@@ -8,7 +8,7 @@
 
 .form {
 	grid-column: 1;
-	padding-top: 100px;
+	padding-top: 60px;
 }
 
 svg {
@@ -18,17 +18,19 @@ svg {
 }
 
 .form-field {
-	display: grid;
-	grid-template-columns: 1fr 80px;
-	grid-gap: 0 20px;
-}
+	display: block;
+	margin: 0 0 1em;
 
-.form-label {
-	grid-column: 1;
-}
+	.form-label {
+		display: block;
+		margin: 0 0 0.5em;
+	}
 
-.form-input {
-	grid-column: 2;
-	align-self: center;
-	font-size: 18px;
+	select {
+		width: 80px;
+		font-size: 1.125rem;
+	}
+	input[type="text"] {
+		font-size: 1.125rem;
+	}
 }

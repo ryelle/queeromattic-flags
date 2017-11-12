@@ -2,13 +2,14 @@
  * External dependencies
  */
 import React, { Component } from 'react';
+import Gridicon from 'gridicons';
 import { range } from 'lodash';
 
 /**
  * Internal dependencies
  */
+import ColorPicker from './color-picker';
 import Flag from './flag';
-import { BI_COLORS, TRANS_COLORS, GAY_COLORS } from './colors';
 
 class App extends Component {
 	state = {
@@ -16,46 +17,42 @@ class App extends Component {
 		rows: 3,
 	};
 
-	updateColor = i => event => {
-		const value = event.target.value;
+	updateColor = i => ({ hex }) => {
 		this.setState(prevState => {
 			const colors = prevState.colors;
-			colors[i] = value;
+			colors[i] = hex;
 			return { colors };
 		});
 	};
 
-	selectRowCount = event => {
-		this.setState({ rows: event.target.value });
+	addRow = () => {
+		this.setState(prevState => ({ rows: prevState.rows + 1 }));
 	};
 
 	renderColorRow = i => {
+		const color = this.state.colors[i] || '';
 		return (
-			<div className="form-field" key={`color-${i}`}>
-				<input type="text" onChange={this.updateColor(i)} />
-			</div>
+			<ColorPicker
+				color={color}
+				onChange={this.updateColor(i)}
+				key={`color-${i}`}
+			/>
 		);
 	};
 
 	renderForm = () => {
-		const { colors, rows } = this.state;
+		const { rows } = this.state;
 		return (
 			<div className="form">
-				<div className="form-field">
-					<label htmlFor="stripe-count" className="form-label">
-						How many stripes on the flag?
-					</label>
-					<select
-						id="stripe-count"
-						className="form-input"
-						onChange={this.selectRowCount}
-						value={rows}>
-						{range(1, 8).map(i => (
-							<option key={`val-${i}`}>{i}</option>
-						))}
-					</select>
-				</div>
+				<h1>Build your own Queeromattic flag</h1>
+				<p>
+					Customize the colors using the fields below, add or remove
+					rows as you need.
+				</p>
 				{range(rows).map(this.renderColorRow)}
+				<button onClick={this.addRow}>
+					<Gridicon icon="plus-small" /> Add Row
+				</button>
 			</div>
 		);
 	};
