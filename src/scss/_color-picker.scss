@@ -2,4 +2,14 @@
 
 .color-picker__header {
 	padding-bottom: 8px;
+	display: flex;
+
+	input, button {
+		flex: 0 1 80px;
+	}
+
+	input {
+		flex: 1;
+		padding: 5px;
+	}
 }

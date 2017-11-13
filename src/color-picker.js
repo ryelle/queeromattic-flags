@@ -23,7 +23,7 @@ class ColorPicker extends Component {
 	};
 
 	state = {
-		isOpen: true,
+		isOpen: false,
 	};
 
 	updateColorInput = event => {
@@ -52,11 +52,17 @@ class ColorPicker extends Component {
 		return (
 			<div className="form-field color-picker">
 				<div className="color-picker__header">
+					<button onClick={this.addRow}>
+						<Gridicon icon="cross-small" />
+					</button>
 					<input
 						type="text"
 						value={color}
 						onChange={this.updateColorInput}
 					/>
+					<button onClick={this.toggleColorPicker}>
+						<Gridicon icon="ink" />
+					</button>
 				</div>
 				{isOpen ? this.renderPicker() : null}
 			</div>

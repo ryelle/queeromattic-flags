@@ -3,18 +3,18 @@
  */
 import React, { Component } from 'react';
 import Gridicon from 'gridicons';
-import { range } from 'lodash';
 
 /**
  * Internal dependencies
  */
+import { BI_COLORS } from './colors';
 import ColorPicker from './color-picker';
 import Flag from './flag';
 
 class App extends Component {
 	state = {
-		colors: [],
-		rows: 3,
+		colors: BI_COLORS,
+		rows: BI_COLORS.length,
 	};
 
 	updateColor = i => ({ hex }) => {
@@ -29,8 +29,7 @@ class App extends Component {
 		this.setState(prevState => ({ rows: prevState.rows + 1 }));
 	};
 
-	renderColorRow = i => {
-		const color = this.state.colors[i] || '';
+	renderColorRow = (color, i) => {
 		return (
 			<ColorPicker
 				color={color}
@@ -41,15 +40,15 @@ class App extends Component {
 	};
 
 	renderForm = () => {
-		const { rows } = this.state;
+		const { colors } = this.state;
 		return (
 			<div className="form">
-				<h1>Build your own Queeromattic flag</h1>
+				<h1>Build your own WordPress Pride flag</h1>
 				<p>
 					Customize the colors using the fields below, add or remove
 					rows as you need.
 				</p>
-				{range(rows).map(this.renderColorRow)}
+				{colors.map(this.renderColorRow)}
 				<button onClick={this.addRow}>
 					<Gridicon icon="plus-small" /> Add Row
 				</button>
@@ -58,7 +57,6 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.state.colors);
 		return (
 			<div className="app">
 				{this.renderForm()}
