@@ -5,20 +5,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CirclePicker } from 'react-color';
 import Gridicon from 'gridicons';
-import { uniq } from 'lodash';
 
 /**
  * Internal dependencies
  */
-import { BI_COLORS, TRANS_COLORS, GAY_COLORS } from './colors';
+import { ALL_COLORS } from './colors';
 
 function getDefaultColors() {
-	return uniq([...GAY_COLORS, ...BI_COLORS, ...TRANS_COLORS]);
+	return ALL_COLORS;
 }
 
 class ColorPicker extends Component {
 	static propTypes = {
 		color: PropTypes.string.isRequired,
+		deleteRow: PropTypes.func.isRequired,
 		onChange: PropTypes.func.isRequired,
 	};
 
@@ -52,7 +52,7 @@ class ColorPicker extends Component {
 		return (
 			<div className="form-field color-picker">
 				<div className="color-picker__header">
-					<button onClick={this.addRow}>
+					<button onClick={this.props.deleteRow}>
 						<Gridicon icon="cross-small" />
 					</button>
 					<input

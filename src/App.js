@@ -7,34 +7,49 @@ import Gridicon from 'gridicons';
 /**
  * Internal dependencies
  */
-import { BI_COLORS } from './colors';
+import { TRANS_COLORS } from './colors';
 import ColorPicker from './color-picker';
 import Flag from './flag';
 
 class App extends Component {
 	state = {
-		colors: BI_COLORS,
-		rows: BI_COLORS.length,
+		colors: TRANS_COLORS,
+		rows: TRANS_COLORS.length,
 	};
 
 	updateColor = i => ({ hex }) => {
-		this.setState(prevState => {
-			const colors = prevState.colors;
-			colors[i] = hex;
-			return { colors };
-		});
+		this.setState(({ colors }) => ({
+			colors: [
+				...colors.slice(0, i),
+				hex.toUpperCase(),
+				...colors.slice(i + 1),
+			],
+		}));
 	};
 
 	addRow = () => {
-		this.setState(prevState => ({ rows: prevState.rows + 1 }));
+		this.setState(({ rows, colors }) => ({
+			colors: [...colors, '#333'],
+			rows: rows + 1,
+		}));
+	};
+
+	deleteRow = i => () => {
+		this.setState(({ colors, rows }) => {
+			return {
+				colors: [...colors.slice(0, i), ...colors.slice(i + 1)],
+				rows: rows - 1,
+			};
+		});
 	};
 
 	renderColorRow = (color, i) => {
 		return (
 			<ColorPicker
-				color={color}
-				onChange={this.updateColor(i)}
 				key={`color-${i}`}
+				color={color}
+				deleteRow={this.deleteRow(i)}
+				onChange={this.updateColor(i)}
 			/>
 		);
 	};

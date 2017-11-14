@@ -22,3 +22,18 @@ export const GAY_COLORS = [
 	'#3EA7D5',
 	'#8B79B8',
 ];
+
+export const ALL_COLORS = [
+	'#DF4C3E',
+	'#F47C3B',
+	'#FDB813',
+	'#74B95C',
+	'#3EA7D5',
+	'#8B79B8',
+	'#1D439B',
+	'#744E97',
+	'#D71673',
+	'#61CDF6',
+	'#F7ABB8',
+	'#F4F4F5',
+];
