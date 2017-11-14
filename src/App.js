@@ -49,6 +49,7 @@ class App extends Component {
 				key={`color-${i}`}
 				color={color}
 				deleteRow={this.deleteRow(i)}
+				index={i}
 				onChange={this.updateColor(i)}
 			/>
 		);
@@ -65,7 +66,8 @@ class App extends Component {
 				</p>
 				{colors.map(this.renderColorRow)}
 				<button onClick={this.addRow}>
-					<Gridicon icon="plus-small" /> Add Row
+					<Gridicon icon="plus-small" />
+					<span>Add Row</span>
 				</button>
 			</div>
 		);

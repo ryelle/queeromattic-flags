@@ -12,5 +12,31 @@ h1 {
 	font-size: 1.4rem;
 }
 
+button {
+	display: inline-block;
+	-webkit-appearance: none;
+	appearance: none;
+	border: none;
+	padding: 7px;
+	font-size: 14px;
+	line-height: 1;
+
+	span {
+		vertical-align: middle;
+	}
+
+	.gridicon {
+		top: 5px;
+	}
+
+	.gridicons-plus-small {
+		margin-left: -4px;
+	}
+}
+
+input {
+	// border: 1px solid #444;
+}
+
 @import 'app';
 @import 'color-picker';
