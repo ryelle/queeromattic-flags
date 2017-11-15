@@ -4,7 +4,7 @@ const GF = ['#EC77A0', '#F4F4F5', '#9B48A3', '#222233', '#1D439B'];
 const NB = ['#FDB813', '#F4F4F5', '#9B48A3', '#333344'];
 const ACE = ['#333344', '#888899', '#F4F4F5', '#921E79'];
 const PAN = ['#D71673', '#FDB813', '#3EA7D5'];
-const POLY = ['#D71673', '#FDB813', '#219CD3'];
+const POLY = ['#D71673', '#74B95C', '#219CD3'];
 const BI = ['#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673'];
 
 const AGENDER = [
