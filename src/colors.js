@@ -1,39 +1,119 @@
-export const TRANS_COLORS = [
-	'#61CDF6',
-	'#F7ABB8',
+const TRANS = ['#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6'];
+const GQ = ['#74B95C', '#F4F4F5', '#8B79B7'];
+const GF = ['#EC77A0', '#F4F4F5', '#9B48A3', '#222233', '#1D439B'];
+const NB = ['#FDB813', '#F4F4F5', '#9B48A3', '#333344'];
+const ACE = ['#333344', '#888899', '#F4F4F5', '#921E79'];
+const PAN = ['#D71673', '#FDB813', '#3EA7D5'];
+const POLY = ['#D71673', '#FDB813', '#219CD3'];
+const BI = ['#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673'];
+
+const AGENDER = [
+	'#333344',
+	'#888899',
 	'#F4F4F5',
-	'#F7ABB8',
-	'#61CDF6',
+	'#BEEB82',
+	'#F4F4F5',
+	'#888899',
+	'#333344',
 ];
 
-export const BI_COLORS = [
-	'#1D439B',
-	'#1D439B',
-	'#744E97',
-	'#D71673',
-	'#D71673',
-];
+const GAY = ['#DF4C3E', '#F47C3B', '#FDB813', '#74B95C', '#3EA7D5', '#8B79B8'];
 
-export const GAY_COLORS = [
+const GAY_POC = [
+	'#000105',
+	'#5E4728',
 	'#DF4C3E',
 	'#F47C3B',
 	'#FDB813',
 	'#74B95C',
 	'#3EA7D5',
 	'#8B79B8',
+];
+
+export const list = [
+	{
+		label: 'Transgender',
+		value: 'transgender',
+		colors: TRANS,
+	},
+	{
+		label: 'Genderqueer',
+		value: 'genderqueer',
+		colors: GQ,
+	},
+	{
+		label: 'Genderfluid',
+		value: 'genderfluid',
+		colors: GF,
+	},
+	{
+		label: 'Nonbinary',
+		value: 'nonbinary',
+		colors: NB,
+	},
+	{
+		label: 'Asexual',
+		value: 'asexual',
+		colors: ACE,
+	},
+	{
+		label: 'Pansexual',
+		value: 'pansexual',
+		colors: PAN,
+	},
+	{
+		label: 'Polysexual',
+		value: 'polysexual',
+		colors: POLY,
+	},
+	{
+		label: 'Bisexual',
+		value: 'bisexual',
+		colors: BI,
+	},
+	{
+		label: 'Agender',
+		value: 'agender',
+		colors: AGENDER,
+	},
+	{
+		label: 'Gay (Rainbow)',
+		value: 'rainbow',
+		colors: GAY,
+	},
+	{
+		label: 'Gay #MoreColorMorePride',
+		value: 'more-color',
+		colors: GAY_POC,
+	},
 ];
 
 export const ALL_COLORS = [
+	// Row 1
+	'#000105',
+	'#222228',
+	'#33333a',
+	'#888890',
+	'#C8C8CC',
+	'#F4F4F5',
+	// Row 2
 	'#DF4C3E',
 	'#F47C3B',
 	'#FDB813',
+	'#FFE28C',
+	'#BEEB82',
 	'#74B95C',
+	// Row 3
+	'#61CDF6',
 	'#3EA7D5',
-	'#8B79B8',
 	'#1D439B',
 	'#744E97',
+	'#8B79B8',
+	'#9B48A3',
+	// Row 3
+	'#921E79',
 	'#D71673',
-	'#61CDF6',
+	'#EC77A0',
 	'#F7ABB8',
-	'#F4F4F5',
+	'#5E4728',
 ];
