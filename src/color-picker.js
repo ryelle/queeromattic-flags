@@ -52,13 +52,18 @@ class ColorPicker extends Component {
 	render() {
 		const { isOpen } = this.state;
 		const { color, index } = this.props;
+		// Set ratio to an arbitray "failing" number
+		let ratioToWhite = 1;
+		try {
+			ratioToWhite = ratio(color, 'white');
+		} catch (error) {}
 		const dropClasses = classNames({
 			'button-drop': true,
-			'is-light-bg': ratio(color, 'white') < 1.5,
+			'is-light-bg': ratioToWhite < 1.5,
 		});
 		const dropStyle = {
 			background: color,
-			borderColor: color,
+			borderColor: color || 'transparent',
 		};
 		return (
 			<div className="form-field color-picker">
