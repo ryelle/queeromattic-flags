@@ -100,13 +100,10 @@ class App extends Component {
 		);
 	};
 
-	renderForm = () => {
+	renderCustomize = () => {
 		const { colors } = this.state;
 		return (
-			<div className="form">
-				<h1>Build your own WordPress Pride flag</h1>
-				{this.renderColorSelect()}
-				<hr />
+			<div className="form-lower">
 				<p>
 					Customize the colors using the fields below, add or remove
 					rows as you need.
@@ -123,7 +120,11 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				{this.renderForm()}
+				<div className="form-upper">
+					<h1>Build your own WordPress Pride flag</h1>
+					{this.renderColorSelect()}
+				</div>
+				{this.renderCustomize()}
 				<Flag colors={this.state.colors} />
 			</div>
 		);
