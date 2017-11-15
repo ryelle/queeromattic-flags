@@ -3,18 +3,20 @@
  */
 import React, { Component } from 'react';
 import Gridicon from 'gridicons';
-
+import { find } from 'lodash';
 /**
  * Internal dependencies
  */
-import { TRANS_COLORS } from './colors';
+import { list } from './colors';
 import ColorPicker from './color-picker';
 import Flag from './flag';
 
+const PLACEHOLDER = '#33333A';
+
 class App extends Component {
 	state = {
-		colors: TRANS_COLORS,
-		rows: TRANS_COLORS.length,
+		selected: [],
+		colors: [PLACEHOLDER],
 	};
 
 	updateColor = i => ({ hex }) => {
@@ -28,19 +30,27 @@ class App extends Component {
 	};
 
 	addRow = () => {
-		this.setState(({ rows, colors }) => ({
-			colors: [...colors, '#333'],
-			rows: rows + 1,
+		this.setState(({ colors }) => ({
+			colors: [...colors, PLACEHOLDER],
 		}));
 	};
 
 	deleteRow = i => () => {
-		this.setState(({ colors, rows }) => {
+		this.setState(({ colors }) => {
 			return {
 				colors: [...colors.slice(0, i), ...colors.slice(i + 1)],
-				rows: rows - 1,
 			};
 		});
+	};
+
+	setFlag = event => {
+		const item = find(list, { value: event.target.value });
+		if (item) {
+			this.setState({
+				selected: item.value,
+				colors: item.colors,
+			});
+		}
 	};
 
 	renderColorRow = (color, i) => {
@@ -55,6 +65,18 @@ class App extends Component {
 		);
 	};
 
+	renderColorSelect = () => {
+		return (
+			<select onChange={this.setFlag}>
+				{list.map(({ label, value }) => (
+					<option key={value} value={value}>
+						{label}
+					</option>
+				))}
+			</select>
+		);
+	};
+
 	renderForm = () => {
 		const { colors } = this.state;
 		return (
@@ -64,6 +86,7 @@ class App extends Component {
 					Customize the colors using the fields below, add or remove
 					rows as you need.
 				</p>
+				{this.renderColorSelect()}
 				{colors.map(this.renderColorRow)}
 				<button onClick={this.addRow}>
 					<Gridicon icon="plus-small" />
