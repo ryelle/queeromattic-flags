@@ -1,12 +1,5 @@
-const TRANS = ['#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6'];
-const GQ = ['#74B95C', '#F4F4F5', '#8B79B7'];
-const GF = ['#EC77A0', '#F4F4F5', '#9B48A3', '#222233', '#1D439B'];
-const NB = ['#FDB813', '#F4F4F5', '#9B48A3', '#333344'];
 const ACE = ['#333344', '#888899', '#F4F4F5', '#921E79'];
-const PAN = ['#D71673', '#FDB813', '#3EA7D5'];
-const POLY = ['#D71673', '#74B95C', '#219CD3'];
-const BI = ['#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673'];
-
+const ARO = ['#74B95C', '#BEEB82', '#F4F4F5', '#888890', '#33333A'];
 const AGENDER = [
 	'#333344',
 	'#888899',
@@ -16,9 +9,8 @@ const AGENDER = [
 	'#888899',
 	'#333344',
 ];
-
+const BI = ['#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673'];
 const GAY = ['#DF4C3E', '#F47C3B', '#FDB813', '#74B95C', '#3EA7D5', '#8B79B8'];
-
 const GAY_POC = [
 	'#000105',
 	'#5E4728',
@@ -29,17 +21,43 @@ const GAY_POC = [
 	'#3EA7D5',
 	'#8B79B8',
 ];
+const GQ = ['#74B95C', '#F4F4F5', '#8B79B7'];
+const GF = ['#EC77A0', '#F4F4F5', '#9B48A3', '#222233', '#1D439B'];
+const NB = ['#FDB813', '#F4F4F5', '#9B48A3', '#333344'];
+const PAN = ['#D71673', '#FDB813', '#3EA7D5'];
+const POLY = ['#D71673', '#74B95C', '#219CD3'];
+const TRANS = ['#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6'];
 
 export const list = [
 	{
-		label: 'Transgender',
-		value: 'transgender',
-		colors: TRANS,
+		label: 'Agender',
+		value: 'agender',
+		colors: AGENDER,
 	},
 	{
-		label: 'Genderqueer',
-		value: 'genderqueer',
-		colors: GQ,
+		label: 'Aromantic',
+		value: 'aromantic',
+		colors: ARO,
+	},
+	{
+		label: 'Asexual',
+		value: 'asexual',
+		colors: ACE,
+	},
+	{
+		label: 'Bisexual',
+		value: 'bisexual',
+		colors: BI,
+	},
+	{
+		label: 'Gay #MoreColorMorePride',
+		value: 'more-color',
+		colors: GAY_POC,
+	},
+	{
+		label: 'Gay (Rainbow)',
+		value: 'rainbow',
+		colors: GAY,
 	},
 	{
 		label: 'Genderfluid',
@@ -47,14 +65,14 @@ export const list = [
 		colors: GF,
 	},
 	{
+		label: 'Genderqueer',
+		value: 'genderqueer',
+		colors: GQ,
+	},
+	{
 		label: 'Nonbinary',
 		value: 'nonbinary',
 		colors: NB,
-	},
-	{
-		label: 'Asexual',
-		value: 'asexual',
-		colors: ACE,
 	},
 	{
 		label: 'Pansexual',
@@ -67,24 +85,9 @@ export const list = [
 		colors: POLY,
 	},
 	{
-		label: 'Bisexual',
-		value: 'bisexual',
-		colors: BI,
-	},
-	{
-		label: 'Agender',
-		value: 'agender',
-		colors: AGENDER,
-	},
-	{
-		label: 'Gay (Rainbow)',
-		value: 'rainbow',
-		colors: GAY,
-	},
-	{
-		label: 'Gay #MoreColorMorePride',
-		value: 'more-color',
-		colors: GAY_POC,
+		label: 'Transgender',
+		value: 'transgender',
+		colors: TRANS,
 	},
 ];
 
