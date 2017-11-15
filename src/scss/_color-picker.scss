@@ -10,7 +10,12 @@
 
 	input {
 		flex: 1;
-		padding: 5px;
+		padding: 5px 10px;
+		border-width: 1px 0;
+	}
+
+	.button-drop {
+		color: white;
 	}
 }
 

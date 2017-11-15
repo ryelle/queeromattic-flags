@@ -11,7 +11,7 @@
 	padding-top: 60px;
 }
 
-svg {
+.flag {
 	max-width: 500px;
 	height: auto;
 	grid-column: 2;
@@ -25,12 +25,48 @@ svg {
 		display: block;
 		margin: 0 0 0.5em;
 	}
+}
 
-	select {
-		font-size: 1.125rem;
+button {
+	display: inline-block;
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 7px;
+	font-size: 14px;
+	line-height: 1;
+	text-transform: uppercase;
+	background: #F4F4F5;
+	border: 1px solid #ccc;
+
+	span {
+		display: inline-block;
+		padding-right: 7px;
+		vertical-align: middle;
 	}
 
-	input[type="text"] {
-		font-size: 1.125rem;
+	.gridicon {
+		top: 5px;
 	}
+
+	.gridicons-plus-small {
+		margin-left: -4px;
+	}
+
+	.gridicons-cross-small {
+		color: #C25E4A;
+	}
+}
+
+input,
+select {
+	border: 1px solid #ccc;
+}
+
+select {
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 7px 32px 7px 16px;
+	background: #F4F4F5 url($arrow) no-repeat 95% center;
+	border-radius: 0;
+	width: 100%;
 }

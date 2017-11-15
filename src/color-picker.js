@@ -50,10 +50,16 @@ class ColorPicker extends Component {
 	render() {
 		const { isOpen } = this.state;
 		const { color, index } = this.props;
+		const dropStyle = {
+			background: color,
+			borderColor: color,
+		};
 		return (
 			<div className="form-field color-picker">
 				<div className="color-picker__header">
 					<button
+						className="button-drop"
+						style={dropStyle}
 						onClick={this.toggleColorPicker}
 						aria-label={`Open color picker for row ${index}`}>
 						<Gridicon icon="ink" />
@@ -65,6 +71,7 @@ class ColorPicker extends Component {
 						onChange={this.updateColorInput}
 					/>
 					<button
+						className="button-close"
 						onClick={this.props.deleteRow}
 						aria-label={`Delete row ${index}`}>
 						<Gridicon icon="cross-small" />

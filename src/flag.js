@@ -45,7 +45,7 @@ class Flag extends Component {
 		const { colors, layout } = this.props;
 		const useColors = getColorsForLayout(colors, layout);
 		return (
-			<svg viewBox="0 0 540 482">
+			<svg viewBox="0 0 540 482" className="flag">
 				<defs>
 					<mask id="flag-stripes">
 						<path
