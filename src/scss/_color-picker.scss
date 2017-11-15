@@ -16,6 +16,16 @@
 
 	.button-drop {
 		color: white;
+
+		&.is-light-bg {
+			color: rgba( #222, 0.7 );
+		}
+
+		&:not(.is-light-bg) .gridicon  {
+			$shadow: 0 0 1px rgba( 0, 0, 0, 0.5 );
+			-webkit-filter: drop-shadow( $shadow );
+			        filter: drop-shadow( $shadow );
+		}
 	}
 }
 

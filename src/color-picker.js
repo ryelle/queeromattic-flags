@@ -4,7 +4,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CirclePicker } from 'react-color';
+import classNames from 'classnames';
 import Gridicon from 'gridicons';
+import { ratio } from 'get-contrast';
 
 /**
  * Internal dependencies
@@ -50,6 +52,10 @@ class ColorPicker extends Component {
 	render() {
 		const { isOpen } = this.state;
 		const { color, index } = this.props;
+		const dropClasses = classNames({
+			'button-drop': true,
+			'is-light-bg': ratio(color, 'white') < 1.5,
+		});
 		const dropStyle = {
 			background: color,
 			borderColor: color,
@@ -58,7 +64,7 @@ class ColorPicker extends Component {
 			<div className="form-field color-picker">
 				<div className="color-picker__header">
 					<button
-						className="button-drop"
+						className={dropClasses}
 						style={dropStyle}
 						onClick={this.toggleColorPicker}
 						aria-label={`Open color picker for row ${index}`}>
