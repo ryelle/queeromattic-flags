@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import Gridicon from 'gridicons';
-import { find } from 'lodash';
+import { find, random } from 'lodash';
 /**
  * Internal dependencies
  */
@@ -13,11 +13,25 @@ import Flag from './flag';
 
 const PLACEHOLDER = '#33333A';
 
+function getRandomFlag(list = []) {
+	const index = random(list.length - 1);
+	return list[index];
+}
+
 class App extends Component {
 	state = {
-		selected: [],
+		selected: '',
 		colors: [PLACEHOLDER],
 	};
+
+	constructor(props) {
+		super(props);
+		const { value, colors } = getRandomFlag(list);
+		this.state = {
+			selected: value,
+			colors,
+		};
+	}
 
 	updateColor = i => ({ hex }) => {
 		this.setState(({ colors }) => ({
@@ -66,14 +80,23 @@ class App extends Component {
 	};
 
 	renderColorSelect = () => {
+		const { selected } = this.state;
 		return (
-			<select onChange={this.setFlag}>
-				{list.map(({ label, value }) => (
-					<option key={value} value={value}>
-						{label}
-					</option>
-				))}
-			</select>
+			<div className="form-field">
+				<label htmlFor="existing-flags" className="form-label">
+					Select a preset flag
+				</label>
+				<select
+					id="existing-flags"
+					onChange={this.setFlag}
+					value={selected}>
+					{list.map(({ label, value }) => (
+						<option key={value} value={value}>
+							{label}
+						</option>
+					))}
+				</select>
+			</div>
 		);
 	};
 
@@ -82,11 +105,12 @@ class App extends Component {
 		return (
 			<div className="form">
 				<h1>Build your own WordPress Pride flag</h1>
+				{this.renderColorSelect()}
+				<hr />
 				<p>
 					Customize the colors using the fields below, add or remove
 					rows as you need.
 				</p>
-				{this.renderColorSelect()}
 				{colors.map(this.renderColorRow)}
 				<button onClick={this.addRow}>
 					<Gridicon icon="plus-small" />
