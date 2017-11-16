@@ -28,6 +28,11 @@
 		grid-row: 1 / span 2;
 	}
 
+	.credits {
+		margin-bottom: 60px;
+		grid-column: 1 / span 2;
+	}
+
 	@media ( max-width: 850px ) {
 		max-width: 100%;
 		padding: 0 20px;
