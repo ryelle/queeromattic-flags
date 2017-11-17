@@ -63,7 +63,6 @@ class ColorPicker extends Component {
 		});
 		const dropStyle = {
 			background: color,
-			borderColor: color || 'transparent',
 		};
 		return (
 			<div className="form-field color-picker">
