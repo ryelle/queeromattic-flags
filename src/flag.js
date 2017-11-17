@@ -4,19 +4,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-function getColorsForLayout(colors, layout) {
-	// switch layout {}
-	return colors;
-}
-
 class Flag extends Component {
 	static propTypes = {
 		colors: PropTypes.array.isRequired,
-		layout: PropTypes.string.isRequired,
-	};
-
-	static defaultProps = {
-		layout: 'rainbow',
 	};
 
 	renderRows = colors => {
@@ -42,8 +32,7 @@ class Flag extends Component {
 	};
 
 	render() {
-		const { colors, layout } = this.props;
-		const useColors = getColorsForLayout(colors, layout);
+		const { colors } = this.props;
 		return (
 			<svg viewBox="0 0 540 482" className="flag">
 				<defs>
@@ -55,7 +44,7 @@ class Flag extends Component {
 						/>
 					</mask>
 				</defs>
-				{this.renderRows(useColors)}
+				{this.renderRows(colors)}
 				<g>
 					<path fill="#546670" d="M78,103h11.3v306.8H78V103z" />
 					<circle fill="#546670" cx="83.7" cy="83.5" r="11.7" />
