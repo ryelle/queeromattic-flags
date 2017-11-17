@@ -13,5 +13,9 @@ h1 {
 	font-size: 1.4rem;
 }
 
+button, select {
+	cursor: pointer;
+}
+
 @import 'app';
 @import 'color-picker';
