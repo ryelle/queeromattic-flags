@@ -8,10 +8,11 @@ import ReactDOM from 'react-dom';
  * Internal dependencies
  */
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
 // CSS
 import './style.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+ReactDOM.render(
+	<App generateRandom={false} />,
+	document.getElementById('root'),
+);
