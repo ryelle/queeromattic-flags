@@ -7,7 +7,7 @@ import ReactDOM from 'react-dom';
 /**
  * Internal dependencies
  */
-import App from './App';
+import App from './components/app';
 
 // CSS
 import './style.css';

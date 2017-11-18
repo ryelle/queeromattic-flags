@@ -2,14 +2,15 @@
  * External dependencies
  */
 import Express from 'express';
-// import React from 'react';
-// import { renderToString } from 'react-dom/server';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 import path from 'path';
 
 /**
  * Internal dependencies
  */
 // import App from '../src/App';
+import Skeleton from '../src/components/skeleton';
 import assets from '../build/asset-manifest.json';
 
 const app = Express();
@@ -20,7 +21,7 @@ app.use('/static', Express.static(path.resolve(__dirname, '../build/static')));
 const pageTitle = 'Queeromattic Flags';
 
 app.get('/', function(req, res) {
-	const markup = '';
+	const markup = renderToString( <Skeleton /> );
 	const jsFile = '/' + assets['main.js'];
 	const cssFile = '/' + assets['main.css'];
 	return res.render('index', { pageTitle, cssFile, jsFile, markup });

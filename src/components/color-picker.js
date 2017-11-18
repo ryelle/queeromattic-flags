@@ -11,7 +11,7 @@ import { ratio } from 'get-contrast';
 /**
  * Internal dependencies
  */
-import { ALL_COLORS } from './colors';
+import { ALL_COLORS } from 'utils/colors';
 
 function getDefaultColors() {
 	return ALL_COLORS;

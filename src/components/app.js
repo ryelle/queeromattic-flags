@@ -4,12 +4,14 @@
 import React, { Component } from 'react';
 import Gridicon from 'gridicons';
 import { find, random } from 'lodash';
+
 /**
  * Internal dependencies
  */
-import ColorPicker from './color-picker';
-import Flag from './flag';
-import { list } from './colors';
+import ColorPicker from 'components/color-picker';
+import Credits from 'components/credits';
+import Flag from 'components/flag';
+import { list } from 'utils/colors';
 
 const PLACEHOLDER = '#33333A';
 
@@ -117,20 +119,6 @@ class App extends Component {
 		);
 	};
 
-	renderCredits = () => {
-		const hugo = <a href="http://hugobaeta.com/">hugobaeta</a>;
-		const mel = <a href="https://choycedesign.com/">melchoyce</a>;
-		const ryelle = <a href="https://ryelle.codes">ryelle</a>;
-
-		return (
-			<p>
-				Original Queeromattic flag by {hugo}, with bisexual and
-				transgender variations by {mel}. Other color combos and the rest
-				of the app by {ryelle}.
-			</p>
-		);
-	};
-
 	render() {
 		return (
 			<div className="app">
@@ -140,7 +128,7 @@ class App extends Component {
 				</div>
 				{this.renderCustomize()}
 				<Flag colors={this.state.colors} />
-				<div className="credits">{this.renderCredits()}</div>
+				<Credits />
 			</div>
 		);
 	}
