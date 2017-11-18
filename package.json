@@ -54,15 +54,16 @@
 		"whatwg-fetch": "2.0.3"
 	},
 	"scripts": {
-		"watch": "npm-run-all -p watch:css watch:js",
-		"watch:css": "npm run build:css && node-sass-chokidar src/scss/index.scss src/style.css --watch",
-		"watch:js": "node scripts/start.js",
-		"prestart": "npm run build",
-		"start": "NODE_ENV=production babel-node server/index.js",
 		"build": "npm-run-all build:css build:js",
 		"build:js": "node scripts/build.js",
 		"build:css": "node-sass-chokidar src/scss/index.scss src/style.css",
-		"test": "node scripts/test.js --env=jsdom"
+		"prestart": "npm run build",
+		"server": "NODE_ENV=production babel-node server/index.js",
+		"start": "npm run server",
+		"test": "node scripts/test.js --env=jsdom",
+		"watch": "npm-run-all -p watch:css watch:js",
+		"watch:css": "npm run build:css && node-sass-chokidar src/scss/index.scss src/style.css --watch",
+		"watch:js": "node scripts/start.js"
 	},
 	"jest": {
 		"collectCoverageFrom": [
