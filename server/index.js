@@ -16,6 +16,7 @@ import Skeleton from '../src/components/skeleton';
 import { list } from '../src/utils/colors';
 
 const app = Express();
+app.set('port', (process.env.PORT || 5000))
 app.set('view engine', 'pug');
 app.set('views', path.resolve(__dirname, './views'));
 app.use('/static', Express.static(path.resolve(__dirname, '../build/static')));
@@ -68,8 +69,6 @@ app.get('/name/:name.svg', function(req, res) {
 		);
 });
 
-var server = app.listen(3000, function() {
-	var host = server.address().address;
-	var port = server.address().port;
-	console.log('Example app listening at http://%s:%s', host, port);
+app.listen(app.get('port'), function() {
+	console.log("Node app is running at localhost:" + app.get('port'))
 });
