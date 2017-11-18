@@ -13,6 +13,6 @@ import App from './App';
 import './style.css';
 
 ReactDOM.render(
-	<App generateRandom={false} />,
+	<App />,
 	document.getElementById('root'),
 );

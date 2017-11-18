@@ -20,7 +20,7 @@ app.use('/static', Express.static(path.resolve(__dirname, '../build/static')));
 const pageTitle = 'Queeromattic Flags';
 
 app.get('/', function(req, res) {
-	const markup = renderToString(<App generateRandom={true} />);
+	const markup = renderToString(<App />);
 	const jsFile = '/' + assets['main.js'];
 	const cssFile = '/' + assets['main.css'];
 	return res.render('index', { pageTitle, cssFile, jsFile, markup });
