@@ -107,8 +107,8 @@ class App extends Component {
 		return (
 			<div className="form-lower">
 				<p>
-					Customize the colors using the fields below, add or remove
-					rows as you need.
+					Customize the colors using the fields below. You can also
+					add or remove rows as you need.
 				</p>
 				{colors.map(this.renderColorRow)}
 				<button onClick={this.addRow}>
