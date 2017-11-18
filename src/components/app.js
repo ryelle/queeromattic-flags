@@ -3,7 +3,7 @@
  */
 import React, { Component } from 'react';
 import Gridicon from 'gridicons';
-import { find, random } from 'lodash';
+import { find, isEqual, random } from 'lodash';
 
 /**
  * Internal dependencies
@@ -34,6 +34,16 @@ class App extends Component {
 			colors,
 		};
 	}
+
+	getSvgUrl = () => {
+		const colors = this.state.colors;
+		const existingFlag = find(list, item => isEqual(colors, item.colors));
+		if (existingFlag) {
+			return `/name/${existingFlag.value}.svg`;
+		}
+		const colorsList = colors.map(c => c.replace('#', '')).join('-');
+		return `/hex/${colorsList}.svg`;
+	};
 
 	updateColor = i => ({ hex }) => {
 		this.setState(({ colors }) => ({
@@ -127,7 +137,12 @@ class App extends Component {
 					{this.renderColorSelect()}
 				</div>
 				{this.renderCustomize()}
-				<Flag colors={this.state.colors} />
+				<div className="flag-container">
+					<Flag colors={this.state.colors} />
+					<a className="button" href={this.getSvgUrl()}>
+						Download SVG
+					</a>
+				</div>
 				<Credits />
 			</div>
 		);
