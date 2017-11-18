@@ -7,9 +7,9 @@ import { find, random } from 'lodash';
 /**
  * Internal dependencies
  */
-import { list } from './colors';
 import ColorPicker from './color-picker';
 import Flag from './flag';
+import { list } from './colors';
 
 const PLACEHOLDER = '#33333A';
 
