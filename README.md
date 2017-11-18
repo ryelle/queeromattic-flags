@@ -35,10 +35,13 @@ npm install
 npm start
 ```
 
-It should open a browser window with the app running, or you can visit the URL
-generated when it finishes compiling. This will also keep the process open and
-watching for changes, so you can edit any of the `src` files and the app will
-reload with your changes (note: it will also randomly regenerate a flag).
+Now you can open `http://localhost:3000` to see the app. This does not
+live-reload, if you make any changes you'll need to halt and restart the
+process.
+
+If you want to keep watch of your files while working, you can run `npm run
+watch`. This runs off a webpack server, rather than the express server, so
+downloading the SVGs won't work with this method.
 
 ### CSS
 
