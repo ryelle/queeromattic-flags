@@ -19,6 +19,11 @@ button, select {
 	cursor: pointer;
 }
 
+a, button, input, select {
+	outline-color: lighten( #3EA7D5, 20% );
+}
+
 @import 'app';
+@import 'credits';
 @import 'skeleton';
 @import 'color-picker';
