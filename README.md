@@ -1,4 +1,4 @@
-# Queeromattic Flags 🏳️‍🌈 🎉
+# WordPress Pride Flags 🏳️‍🌈 🎉
 
 Create your own downloadable WordPress pride flag SVG.
 

@@ -16,12 +16,12 @@ import Skeleton from '../src/components/skeleton';
 import { list } from '../src/utils/colors';
 
 const app = Express();
-app.set('port', (process.env.PORT || 5000))
+app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'pug');
 app.set('views', path.resolve(__dirname, './views'));
 app.use('/static', Express.static(path.resolve(__dirname, '../build/static')));
 
-const pageTitle = 'Queeromattic Flags';
+const pageTitle = 'WordPress Pride Flag Generator';
 
 app.get('/', function(req, res) {
 	const markup = renderToString(<Skeleton />);
@@ -65,10 +65,10 @@ app.get('/name/:name.svg', function(req, res) {
 		.status(400)
 		.send(
 			`Sorry, I don't have ${name} on file.` +
-				'Maybe you should <a href="https://github.com/ryelle/queeromattic-flags">make a suggestion on the repo</a>?',
+				'Maybe you should <a href="https://github.com/ryelle/queeromattic-flags/issues/new?labels=flag%20suggestion">make a suggestion on the repo</a>?',
 		);
 });
 
 app.listen(app.get('port'), function() {
-	console.log("Node app is running at localhost:" + app.get('port'))
+	console.log('Node app is running at localhost:' + app.get('port'));
 });
