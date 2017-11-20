@@ -14,10 +14,10 @@ The pre-set flags are:
 * Aromantic
 * Asexual
 * Bisexual
-* Gay #MoreColorMorePride
-* Gay (Rainbow)
 * Genderfluid
 * Genderqueer
+* LGBTQ #MoreColorMorePride
+* LGBTQ (Rainbow)
 * Nonbinary
 * Pansexual
 * Polysexual

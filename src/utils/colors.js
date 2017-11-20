@@ -10,8 +10,15 @@ const AGENDER = [
 	'#333344',
 ];
 const BI = ['#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673'];
-const GAY = ['#DF4C3E', '#F47C3B', '#FDB813', '#74B95C', '#3EA7D5', '#8B79B8'];
-const GAY_POC = [
+const LGBTQ = [
+	'#DF4C3E',
+	'#F47C3B',
+	'#FDB813',
+	'#74B95C',
+	'#3EA7D5',
+	'#8B79B8',
+];
+const LGBTQ_POC = [
 	'#000105',
 	'#5E4728',
 	'#DF4C3E',
@@ -50,16 +57,6 @@ export const list = [
 		colors: BI,
 	},
 	{
-		label: 'Gay #MoreColorMorePride',
-		value: 'more-color',
-		colors: GAY_POC,
-	},
-	{
-		label: 'Gay (Rainbow)',
-		value: 'rainbow',
-		colors: GAY,
-	},
-	{
 		label: 'Genderfluid',
 		value: 'genderfluid',
 		colors: GF,
@@ -68,6 +65,16 @@ export const list = [
 		label: 'Genderqueer',
 		value: 'genderqueer',
 		colors: GQ,
+	},
+	{
+		label: 'LGBTQ #MoreColorMorePride',
+		value: 'more-color',
+		colors: LGBTQ_POC,
+	},
+	{
+		label: 'LGBTQ (Rainbow)',
+		value: 'rainbow',
+		colors: LGBTQ,
 	},
 	{
 		label: 'Nonbinary',
