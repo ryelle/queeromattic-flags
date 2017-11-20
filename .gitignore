@@ -22,4 +22,5 @@ src/style.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-flag-styles.sketch
+
+*.sketch
