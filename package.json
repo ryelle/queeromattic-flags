@@ -90,6 +90,8 @@
 			"[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
 		],
 		"moduleNameMapper": {
+			"components\\/(.*)": "<rootDir>/src/components/$1",
+			"utils\\/(.*)": "<rootDir>/src/utils/$1",
 			"^react-native$": "react-native-web"
 		},
 		"moduleFileExtensions": [
