@@ -130,7 +130,7 @@ class App extends Component {
 					</button>
 				</div>
 				<div className="flag-container">
-					<Flag colors={ this.state.colors } />
+					<Flag type="stripe" colors={ this.state.colors } />
 					<a className="button" href={ getSvgUrl( this.state.colors ) }>
 						Download SVG
 					</a>
