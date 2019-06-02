@@ -5,31 +5,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class Flag extends Component {
-	static propTypes = {
-		colors: PropTypes.array.isRequired,
-	};
-
-	renderRows = colors => {
+	renderRows( colors ) {
 		const offsetX = 240;
 		const offsetY = 243;
 		const heightRow = 200 / colors.length;
-		const lines = `h220 v${heightRow + 10} h-220 Z`;
+		const lines = `h220 v${ heightRow + 10 } h-220 Z`;
 		return (
 			<g mask="url(#flag-stripes)">
-				{colors.map((color, i) => {
-					const y = offsetY + heightRow * i;
+				{ colors.map( ( color, i ) => {
+					const y = offsetY + ( heightRow * i );
 					return (
 						<path
-							key={`row-${i}`}
-							fill={color}
-							d={`M ${offsetX}, ${y} ${lines}`}
+							key={ `row-${ i }` }
+							fill={ color }
+							d={ `M ${ offsetX }, ${ y } ${ lines }` }
 							transform="rotate(-7)"
 						/>
 					);
-				})}
+				} ) }
 			</g>
 		);
-	};
+	}
 
 	render() {
 		const { colors } = this.props;
@@ -44,7 +40,7 @@ class Flag extends Component {
 						/>
 					</mask>
 				</defs>
-				{this.renderRows(colors)}
+				{ this.renderRows( colors ) }
 				<g>
 					<path fill="#546670" d="M78,103h11.3v306.8H78V103z" />
 					<circle fill="#546670" cx="83.7" cy="83.5" r="11.7" />
@@ -63,7 +59,7 @@ class Flag extends Component {
 					fill="#F4F4F5"
 					d="M204.1,122.9c-41.5,5.1-71,42.9-65.9,84.4c5.1,41.5,42.9,71,84.4,65.9s71-42.9,65.9-84.4c0,0,0,0,0-0.1
 					C283.3,147.3,245.6,117.8,204.1,122.9 M145.8,206.4c-1.2-9.5-0.3-19.1,2.5-28.2l43.2,84.3C166.8,254.1,149.1,232.3,145.8,206.4
-					 M221.8,265.6c-6.5,0.8-13,0.7-19.4-0.4l13-61.4l27.8,54.3l0.6,0.9C236.9,262.4,229.5,264.7,221.8,265.6 M218.8,165.2
+					M221.8,265.6c-6.5,0.8-13,0.7-19.4-0.4l13-61.4l27.8,54.3l0.6,0.9C236.9,262.4,229.5,264.7,221.8,265.6 M218.8,165.2
 					c4-0.7,7.6-1.6,7.6-1.6c3.6-0.9,2.5-6.2-1.1-5.5c0,0-10.8,2.2-17.9,3.1s-17.9,1.3-17.9,1.3c-3.7,0.2-3.4,5.9,0.3,5.6
 					c0,0,3.5,0,7.2-0.2l14,27.6l-9.3,46.2L168,171.6c4-0.7,7.7-1.6,7.7-1.6c3.6-0.9,2.5-6.2-1.1-5.5c0,0-10.8,2.2-17.9,3.1l-4.4,0.5
 					c16.7-33.7,57.5-47.5,91.2-30.8c3.2,1.6,6.3,3.4,9.3,5.5H252c-6.6,0.8-10.6,7.2-9.9,13.4s4.5,9.9,8.6,15s6.8,9.6,7.9,17.9
@@ -74,5 +70,9 @@ class Flag extends Component {
 		);
 	}
 }
+
+Flag.propTypes = {
+	colors: PropTypes.array.isRequired,
+};
 
 export default Flag;

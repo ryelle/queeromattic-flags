@@ -11,6 +11,9 @@ html(lang="en")
 		meta(property="og:image:alt", content="An array of a dozen pride flags: Agender, Aromantic, Asexual, Bisexual, Genderfluid, Genderqueer, LGBTQ (the rainbow), LGBTQ (Philadelphia's more color more pride version with black and brown), Nonbinary, Pansexual, Polysexual, and Transgender.")
 		link(rel="stylesheet", href=cssFile)
 		link(rel="shortcut icon", type="image/png", href="/static/favicon.png")
+		each file in vendorFiles
+			script(src=file)
+		script!="window.lodash = _;"
 	body
 		#root!= markup
 		script(src=jsFile)

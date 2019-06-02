@@ -14,10 +14,10 @@ export default function Credits() {
 	return (
 		<div className="credits">
 			<p>
-				Original Queeromattic flag by {hugo}, with bisexual and
-				transgender variations by {mel}. Other color combos and the
-				generator itself by {ryelle}. For more info, head on over to the{' '}
-				{github}. ✨🏳️‍🌈
+				Original Queeromattic flag by { hugo }, with bisexual and
+				transgender variations by { mel }. Other color combos and the
+				generator itself by { ryelle }. For more info, head on over to the{ ' ' }
+				{ github }. ✨🏳️‍🌈
 			</p>
 		</div>
 	);
