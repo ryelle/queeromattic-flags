@@ -3,48 +3,37 @@
  * External dependencies
  */
 import Express from 'express';
-import React from 'react';
 import { find } from 'lodash';
-import { renderToString } from 'react-dom/server';
 import path from 'path';
+import webpack from 'webpack';
 
 /**
  * Internal dependencies
  */
-import assets from '../build/asset-manifest.json';
-import Flag from '../src/components/flag';
-import Skeleton from '../src/components/skeleton';
+import { buildSVG } from './svg';
 import { list } from '../src/utils/colors';
 
 const app = Express();
 app.set( 'port', process.env.PORT || 5000 );
-app.set( 'view engine', 'pug' );
 app.set( 'views', path.resolve( __dirname, './views' ) );
-app.use( '/static', Express.static( path.resolve( __dirname, '../build/static' ) ) );
 
-const pageTitle = 'WordPress Pride Flag Generator';
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// configuration file as a base.
+const config = require( '../webpack.config.js' );
+const compiler = webpack( config );
+app.use(
+	require( 'webpack-dev-middleware' )( compiler, {
+		// noInfo: true,
+		publicPath: config.output.publicPath,
+	} )
+);
+app.use( require( 'webpack-hot-middleware' )( compiler ) );
+
+app.use( '/static', Express.static( path.resolve( __dirname, '../build' ) ) );
 
 app.get( '/', function( req, res ) {
-	const markup = renderToString( <Skeleton /> );
-	const jsFile = assets.index;
-	const vendorFiles = assets.vendor;
-	const cssFile = assets.style;
-	return res.render( 'index', { pageTitle, cssFile, jsFile, vendorFiles, markup } );
+	res.sendFile( path.resolve( __dirname, './views/index.html' ) );
 } );
-
-function buildSVG( colors ) {
-	const markup = renderToString( <Flag colors={ colors } /> );
-	const headers =
-		'<?xml version="1.0" encoding="UTF-8" standalone="no"?>' +
-		'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
-	return (
-		headers +
-		markup.replace(
-			'<svg ',
-			'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" '
-		)
-	);
-}
 
 app.get( '/hex/:colors.svg', function( req, res ) {
 	const { colors = '' } = req.params;

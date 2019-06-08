@@ -15,4 +15,14 @@ module.exports = {
 			},
 		],
 	],
+	plugins: [
+		'react-hot-loader/babel',
+		[
+			'babel-plugin-styled-components',
+			{
+				fileName: false,
+				// minify: false,
+			},
+		],
+	],
 };

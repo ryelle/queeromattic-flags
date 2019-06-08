@@ -3,6 +3,8 @@
  */
 import React from 'react';
 
+// import './style.scss';
+
 export default function Credits() {
 	const hugo = <a href="http://hugobaeta.com/">hugobaeta</a>;
 	const mel = <a href="https://choycedesign.com/">melchoyce</a>;

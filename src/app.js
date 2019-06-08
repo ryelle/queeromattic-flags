@@ -2,8 +2,9 @@
  * External dependencies
  */
 import React, { Component } from 'react';
-import Gridicon from 'gridicons';
 import { find, isEqual, random } from 'lodash';
+import Gridicon from 'gridicons';
+import { hot } from 'react-hot-loader/root';
 
 /**
  * Internal dependencies
@@ -108,6 +109,7 @@ class App extends Component {
 						</label>
 						<select
 							id="existing-flags"
+							onChange={ this.setFlag }
 							onBlur={ this.setFlag }
 							value={ selected }>
 							{ list.map( ( { label, value } ) => (
@@ -121,7 +123,7 @@ class App extends Component {
 				<div className="form-lower">
 					<p>
 						Customize the colors using the fields below. You can also
-						add or remove rows as you need.
+						add or remove rows as you need
 					</p>
 					{ colors.map( this.renderColorRow ) }
 					<button onClick={ this.addRow }>
@@ -141,4 +143,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default hot( App );

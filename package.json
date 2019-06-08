@@ -2,39 +2,14 @@
 	"name": "queer-flags",
 	"version": "0.1.0",
 	"private": true,
-	"engines": {
-		"node": "10.15.3",
-		"npm": "6.9.0"
-	},
-	"dependencies": {
-		"@babel/preset-env": "^7.4.5",
-		"@wordpress/eslint-plugin": "2.1.0",
-		"@wordpress/scripts": "3.1.0",
-		"classnames": "2.2.6",
-		"eslint": "^5.16.0",
-		"eslint-plugin-jsx-a11y": "^6.2.1",
-		"eslint-plugin-react": "^7.13.0",
-		"express": "4.17.1",
-		"get-contrast": "2.0.0",
-		"gridicons": "3.3.1",
-		"jest": "^24.8.0",
-		"postcss": "^7.0.16",
-		"pug": "2.0.3",
-		"react": "16.8.6",
-		"react-color": "2.17.3",
-		"react-dom": "16.8.6",
-		"webpack": "^4.32.2",
-		"whatwg-fetch": "3.0.0"
-	},
 	"scripts": {
-		"build": "wp-scripts build -o build/static/js/index.js",
-		"xpreserver": "npm run build",
-		"server": "NODE_ENV=production babel-node server/index.js",
-		"start": "wp-scripts start -o build/static/js/index.js",
-		"test": "wp-scripts test-unit-js",
-		"lint:css": "wp-scripts lint-style '**/*.css'",
+		"build": "webpack",
 		"lint:js": "wp-scripts lint-js src",
-		"lint:pkg-json": "wp-scripts lint-pkg-json ."
+		"lint:pkg-json": "wp-scripts lint-pkg-json .",
+		"build": "NODE_ENV=production babel-node server/index.js",
+		"start": "babel-node server/index.js",
+		"test": "wp-scripts test-unit-js",
+		"xpreserver": "npm run build"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -44,9 +19,36 @@
 			"@wordpress/dependency-group": "off"
 		}
 	},
-	"devDependencies": {
+	"dependencies": {
 		"@babel/core": "^7.4.5",
 		"@babel/node": "^7.4.5",
-		"@babel/preset-react": "^7.0.0"
+		"@babel/preset-env": "^7.4.5",
+		"@babel/preset-react": "^7.0.0",
+		"@wordpress/eslint-plugin": "2.1.0",
+		"@wordpress/scripts": "3.1.0",
+		"babel-loader": "^8.0.6",
+		"babel-plugin-styled-components": "^1.10.0",
+		"classnames": "2.2.6",
+		"eslint": "^5.16.0",
+		"eslint-plugin-jsx-a11y": "^6.2.1",
+		"eslint-plugin-react": "^7.13.0",
+		"express": "4.17.1",
+		"get-contrast": "2.0.0",
+		"gridicons": "3.3.1",
+		"jest": "^24.8.0",
+		"react": "16.8.6",
+		"react-color": "2.17.3",
+		"react-dom": "16.8.6",
+		"react-hot-loader": "^4.9.0",
+		"styled-components": "^4.3.1",
+		"webpack": "^4.32.2",
+		"webpack-dev-middleware": "^3.7.0",
+		"webpack-dev-server": "^3.5.1",
+		"webpack-hot-middleware": "^2.25.0",
+		"whatwg-fetch": "3.0.0"
+	},
+	"engines": {
+		"node": "10.15.3",
+		"npm": "6.9.0"
 	}
 }
