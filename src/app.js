@@ -47,7 +47,7 @@ const RightWrap = styled.div`
 	text-align: center;
 `;
 
-const App = ( { add, colors } ) => (
+const App = ( { add, colors, name } ) => (
 	<Container>
 		<LeftWrap>
 			<Title>Build your own WordPress Pride flag</Title>
@@ -63,7 +63,7 @@ const App = ( { add, colors } ) => (
 			</Button>
 		</LeftWrap>
 		<RightWrap>
-			<Flag type="stripe" colors={ colors } />
+			<Flag type={ name } colors={ colors } />
 			<Button as="a" href={ getSvgUrl( colors ) }>
 				Download SVG
 			</Button>
@@ -76,12 +76,14 @@ App.propTypes = {
 	// from redux
 	add: PropTypes.func.isRequired,
 	colors: PropTypes.array.isRequired,
+	name: PropTypes.string.isRequired,
 };
 
 export default compose(
 	connect(
 		( state ) => ( {
 			colors: state.colors,
+			name: state.name,
 		} ),
 		( dispatch ) => ( {
 			add: ( color ) => dispatch( addColor( color ) ),

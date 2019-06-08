@@ -13,8 +13,7 @@ import StripedFlag from './striped-flag';
 const Flag = ( { type, colors = [] } ) => {
 	switch ( type ) {
 		case 'intersex':
-			return <IntersexFlag colors={ colors } />;
-		case 'stripe':
+			return <IntersexFlag />;
 		default:
 			return <StripedFlag colors={ colors } />;
 	}

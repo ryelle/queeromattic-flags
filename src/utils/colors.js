@@ -72,6 +72,11 @@ export const list = [
 		colors: GQ,
 	},
 	{
+		label: 'Intersex',
+		value: 'intersex',
+		colors: [],
+	},
+	{
 		label: 'LGBTQ #MoreColorMorePride',
 		value: 'more-color',
 		colors: LGBTQ_POC,
