@@ -45,6 +45,10 @@ function colors( state = initialColors, action ) {
 // The current flag name
 function name( state = initialFlag, action ) {
 	switch ( action.type ) {
+		case UPDATE_COLOR:
+		case ADD_COLOR:
+		case DELETE_COLOR:
+			return 'custom'; // Any changes make this a custom flag.
 		case UPDATE_FLAG:
 			return action.name;
 		default:
@@ -56,7 +60,8 @@ export default createStore(
 	combineReducers( {
 		colors,
 		name,
-	} )
+	} ),
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 // Actions

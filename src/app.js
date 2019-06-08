@@ -7,60 +7,74 @@ import { flowRight as compose } from 'lodash';
 import Gridicon from 'gridicons';
 import { hot } from 'react-hot-loader/root';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 /**
  * Internal dependencies
  */
-import ColorPicker from './components/color-picker';
-import Credits from './components/credits';
-import Flag from './components/flag';
-import Selector from './components/selector';
-
-import { addColor, deleteColor, updateColor } from './store';
+import { addColor } from './store';
+import {
+	Button,
+	ColorList,
+	Credits,
+	Flag,
+	Selector,
+	Title,
+} from './components';
 import { getSvgUrl, list } from './utils/colors';
 
-const App = ( { add, colors, del, update } ) => (
-	<div className="app">
-		<div className="form-upper">
-			<h1>Build your own WordPress Pride flag</h1>
+const Container = styled.div`
+	max-width: 830px;
+	padding: 0;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr 500px;
+	grid-template-rows: auto;
+	grid-gap: 0 50px;
+`;
+
+const LeftWrap = styled.div`
+	grid-column: 1;
+	min-width: 270px;
+	padding-top: 80px;
+`;
+
+const RightWrap = styled.div`
+	margin-top: 20px;
+	max-width: 100%;
+	height: auto;
+	grid-column: 2;
+	text-align: center;
+`;
+
+const App = ( { add, colors } ) => (
+	<Container>
+		<LeftWrap>
+			<Title>Build your own WordPress Pride flag</Title>
 			<Selector label="Select a preset flag" options={ list } />
-		</div>
-		<div className="form-lower">
 			<p>
 				Customize the colors using the fields below. You can also add or remove
 				rows as you need
 			</p>
-			{ colors.map( ( color, i ) => {
-				return (
-					<ColorPicker
-						key={ `color-${ i }` }
-						color={ color }
-						deleteRow={ () => del( i ) }
-						index={ i }
-						onChange={ ( { hex = '' } ) => update( hex, i ) }
-					/>
-				);
-			} ) }
-			<button onClick={ () => add( '#33333A' ) }>
+			<ColorList />
+			<Button onClick={ () => add( '#33333A' ) }>
 				<Gridicon icon="plus-small" />
 				<span>Add Row</span>
-			</button>
-		</div>
-		<div className="flag-container">
+			</Button>
+		</LeftWrap>
+		<RightWrap>
 			<Flag type="stripe" colors={ colors } />
-			<a className="button" href={ getSvgUrl( colors ) }>
+			<Button as="a" href={ getSvgUrl( colors ) }>
 				Download SVG
-			</a>
-		</div>
+			</Button>
+		</RightWrap>
 		<Credits />
-	</div>
+	</Container>
 );
 
 App.propTypes = {
 	// from redux
 	add: PropTypes.func.isRequired,
-	del: PropTypes.func.isRequired,
-	update: PropTypes.func.isRequired,
 	colors: PropTypes.array.isRequired,
 };
 
@@ -71,8 +85,6 @@ export default compose(
 		} ),
 		( dispatch ) => ( {
 			add: ( color ) => dispatch( addColor( color ) ),
-			del: ( position ) => dispatch( deleteColor( position ) ),
-			update: ( color, position ) => dispatch( updateColor( color, position ) ),
 		} )
 	),
 	hot

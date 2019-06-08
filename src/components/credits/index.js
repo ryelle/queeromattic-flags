@@ -4,7 +4,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// import './style.scss';
+const Container = styled.div`
+	margin: 60px 0;
+	grid-column: 1 / span 2;
+`;
 
 const Link = styled.a`
 	color: currentColor;
@@ -25,13 +28,13 @@ export default function Credits() {
 	);
 
 	return (
-		<div className="credits">
+		<Container>
 			<p>
 				Original Queeromattic flag by { hugo }, with bisexual and
 				transgender variations by { mel }. Other color combos and the
 				generator itself by { ryelle }. For more info, head on over to the{ ' ' }
 				{ github }. ✨🏳️‍🌈
 			</p>
-		</div>
+		</Container>
 	);
 }

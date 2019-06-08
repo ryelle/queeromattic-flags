@@ -15,7 +15,9 @@ import store from './store';
 const GlobalStyle = createGlobalStyle`
 	:root {
 		--primary-color: #3EA7D5;
+		--warning-color: #c25e4a;
 	}
+
 	body {
 		margin: 0;
 		padding: 0;
@@ -23,17 +25,17 @@ const GlobalStyle = createGlobalStyle`
 		line-height: 1.5;
 	}
 
-	h1 {
-		margin-top: 0;
-		font-size: 1.4rem;
-		line-height: 1.3;
+	input,
+	select {
+		border: 1px solid #ccc;
+		font-size: inherit;
 	}
 
 	button, select {
 		cursor: pointer;
 	}
 
-	a, button, input, select {
+	*:focus {
 		outline-color: var( --primary-color );
 	}
 `;
