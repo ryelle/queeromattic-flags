@@ -1,3 +1,8 @@
+/**
+ * External dependencies
+ */
+import { find, isEqual, random } from 'lodash';
+
 const ACE = [ '#333344', '#888899', '#F4F4F5', '#921E79' ];
 const ARO = [ '#74B95C', '#BEEB82', '#F4F4F5', '#888890', '#33333A' ];
 const AGENDER = [
@@ -127,3 +132,20 @@ export const ALL_COLORS = [
 	'#F7ABB8',
 	'#5E4728',
 ];
+
+// const PLACEHOLDER = '#33333A';
+
+// Uses global list
+export function getRandomFlag() {
+	const index = random( list.length - 1 );
+	return list[ index ];
+}
+
+export function getSvgUrl( colors ) {
+	const existingFlag = find( list, ( item ) => isEqual( colors, item.colors ) );
+	if ( existingFlag ) {
+		return `/name/${ existingFlag.value }.svg`;
+	}
+	const colorsList = colors.map( ( c ) => c.replace( '#', '' ) ).join( '-' );
+	return `/hex/${ colorsList }.svg`;
+}
