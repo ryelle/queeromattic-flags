@@ -2,15 +2,26 @@
  * External dependencies
  */
 import React from 'react';
+import styled from 'styled-components';
 
 // import './style.scss';
 
+const Link = styled.a`
+	color: currentColor;
+
+	:hover,
+	:active,
+	:focus {
+		color: var(--primary-color);
+	}
+`;
+
 export default function Credits() {
-	const hugo = <a href="http://hugobaeta.com/">hugobaeta</a>;
-	const mel = <a href="https://choycedesign.com/">melchoyce</a>;
-	const ryelle = <a href="https://ryelle.codes">ryelle</a>;
+	const hugo = <Link href="http://hugobaeta.com/">hugobaeta</Link>;
+	const mel = <Link href="https://choycedesign.com/">melchoyce</Link>;
+	const ryelle = <Link href="https://ryelle.codes">ryelle</Link>;
 	const github = (
-		<a href="https://github.com/ryelle/queeromattic-flags">github repo</a>
+		<Link href="https://github.com/ryelle/queeromattic-flags">github repo</Link>
 	);
 
 	return (

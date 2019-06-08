@@ -3,10 +3,9 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"build": "webpack",
+		"build": "NODE_ENV=production babel-node server/index.js",
 		"lint:js": "wp-scripts lint-js src",
 		"lint:pkg-json": "wp-scripts lint-pkg-json .",
-		"build": "NODE_ENV=production babel-node server/index.js",
 		"start": "babel-node server/index.js",
 		"test": "wp-scripts test-unit-js",
 		"xpreserver": "npm run build"
@@ -41,6 +40,8 @@
 		"react-dom": "16.8.6",
 		"react-hot-loader": "^4.9.0",
 		"styled-components": "^4.3.1",
+		"stylelint-config-styled-components": "^0.1.1",
+		"stylelint-processor-styled-components": "^1.8.0",
 		"webpack": "^4.32.2",
 		"webpack-dev-middleware": "^3.7.0",
 		"webpack-dev-server": "^3.5.1",
