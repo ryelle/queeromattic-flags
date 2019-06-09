@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { flowRight as compose } from 'lodash';
 import Gridicon from 'gridicons';
@@ -52,15 +52,21 @@ const App = ( { add, colors, name } ) => (
 		<LeftWrap>
 			<Title>Build your own WordPress Pride flag</Title>
 			<Selector label="Select a preset flag" options={ list } />
-			<p>
-				Customize the colors using the fields below. You can also add or remove
-				rows as you need
-			</p>
-			<ColorList />
-			<Button onClick={ () => add( '#33333A' ) }>
-				<Gridicon icon="plus-small" />
-				<span>Add Row</span>
-			</Button>
+			{ 'intersex' === name ? (
+				<p>This flag can&apos;t be customized.</p>
+			) : (
+				<Fragment>
+					<p>
+						Customize the colors using the fields below. You can also add or
+						remove rows as you need
+					</p>
+					<ColorList />
+					<Button onClick={ () => add( '#33333A' ) }>
+						<Gridicon icon="plus-small" />
+						<span>Add Row</span>
+					</Button>
+				</Fragment>
+			) }
 		</LeftWrap>
 		<RightWrap>
 			<Flag type={ name } colors={ colors } />
