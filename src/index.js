@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
 		--warning-color: #c25e4a;
 	}
 
+	[disabled] {
+		--warning-color: #e8bcbc;
+	}
+
 	body {
 		margin: 0;
 		padding: 0;

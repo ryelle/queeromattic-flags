@@ -39,7 +39,7 @@ function getDefaultColors() {
 	return ALL_COLORS;
 }
 
-const ColorPicker = ( { color, index, onChange, onRemove } ) => {
+const ColorPicker = ( { color, disableRemove, index, onChange, onRemove } ) => {
 	const [isOpen, setIsOpen] = useState(false); // eslint-disable-line
 	// Set ratio to an arbitray "failing" number
 	let ratioToWhite = 1;
@@ -68,6 +68,7 @@ const ColorPicker = ( { color, index, onChange, onRemove } ) => {
 					className="button-close"
 					onClick={ onRemove }
 					aria-label={ `Delete row ${ index }` }
+					disabled={ disableRemove }
 				>
 					<CloseIcon icon="cross-small" />
 				</Button>
@@ -85,6 +86,7 @@ const ColorPicker = ( { color, index, onChange, onRemove } ) => {
 
 ColorPicker.propTypes = {
 	color: PropTypes.string.isRequired,
+	disableRemove: PropTypes.bool,
 	index: PropTypes.number,
 	onChange: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,

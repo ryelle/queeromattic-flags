@@ -20,6 +20,7 @@ const ColorList = ( { colors, del, update } ) =>
 				index={ i }
 				onRemove={ () => del( i ) }
 				onChange={ ( { hex = '' } ) => update( hex, i ) }
+				disableRemove={ colors.length === 1 }
 			/>
 		);
 	} );
