@@ -33,9 +33,6 @@ const Selector = ( { label, onChange, options, selected } ) => {
 				onBlur={ onChange }
 				value={ selected }
 			>
-				<option key="custom" value="custom">
-					Custom
-				</option>
 				{ options.map( ( { label: name, value } ) => (
 					<option key={ value } value={ value }>
 						{ name }

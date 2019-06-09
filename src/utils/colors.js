@@ -39,6 +39,7 @@ const NB = [ '#FDB813', '#F4F4F5', '#9B48A3', '#333344' ];
 const PAN = [ '#D71673', '#FDB813', '#3EA7D5' ];
 const POLY = [ '#D71673', '#74B95C', '#219CD3' ];
 const TRANS = [ '#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6' ];
+const PLACEHOLDER = '#C8C8CC';
 
 export const list = [
 	{
@@ -106,6 +107,11 @@ export const list = [
 		value: 'transgender',
 		colors: TRANS,
 	},
+	{
+		label: 'Custom',
+		value: 'custom',
+		colors: [ PLACEHOLDER ],
+	},
 ];
 
 export const ALL_COLORS = [
@@ -137,8 +143,6 @@ export const ALL_COLORS = [
 	'#F7ABB8',
 	'#5E4728',
 ];
-
-// const PLACEHOLDER = '#33333A';
 
 // Uses global list
 export function getRandomFlag() {
