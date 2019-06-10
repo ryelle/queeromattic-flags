@@ -26,13 +26,21 @@ const DropButton = styled( Button )`
 `;
 
 const CloseIcon = styled( Gridicon )`
-	color: var( --warning-color );
+	color: var(--warning-color);
 `;
 
 const Input = styled.input`
 	flex: 1;
 	padding: 5px 10px;
 	border-width: 1px 0;
+`;
+
+const StyledPicker = styled( CirclePicker )`
+	margin-bottom: 30px;
+
+	div {
+		padding: 5px;
+	}
 `;
 
 function getDefaultColors() {
@@ -48,7 +56,7 @@ const ColorPicker = ( { color, disableRemove, index, onChange, onRemove } ) => {
 	} catch ( error ) {}
 
 	return (
-		<div className="form-field color-picker">
+		<div className="form-field color-picker" style={ { marginBottom: isOpen ? '30px' : 0 } }>
 			<Wrapper>
 				<DropButton
 					ratioToWhite={ ratioToWhite }
@@ -74,7 +82,10 @@ const ColorPicker = ( { color, disableRemove, index, onChange, onRemove } ) => {
 				</Button>
 			</Wrapper>
 			{ isOpen ? (
-				<CirclePicker
+				<StyledPicker
+					width={ '100%' }
+					circleSize={ 40 }
+					circleSpacing={ 0 }
 					color={ color }
 					onChangeComplete={ onChange }
 					colors={ getDefaultColors() }
