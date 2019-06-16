@@ -3,15 +3,13 @@
  * External dependencies
  */
 import Express from 'express';
-import { find } from 'lodash';
 import path from 'path';
 import webpack from 'webpack';
 
 /**
  * Internal dependencies
  */
-import { buildSVG } from './svg';
-import { list } from '../src/utils/colors';
+import { getSvgFromColors, getSvgFromName } from './svg';
 
 const app = Express();
 app.set( 'port', process.env.PORT || 5000 );
@@ -37,29 +35,29 @@ app.get( '/', function( req, res ) {
 
 app.get( '/hex/:colors.svg', function( req, res ) {
 	const { colors = '' } = req.params;
-	if ( -1 !== colors.indexOf( '-' ) ) {
-		const localList = colors.split( '-' );
+	const markup = getSvgFromColors( colors );
+	if ( markup ) {
 		res.setHeader( 'Content-Type', 'image/svg+xml' );
-		return res.send( buildSVG( localList.map( ( item ) => '#' + item ) ) );
+		return res.send( markup );
 	}
 	res.status( 400 ).send( "Sorry, I don't understand your colors request!" );
 } );
 
 app.get( '/name/:name.svg', function( req, res ) {
 	const { name = '' } = req.params;
-	const { colors = [] } = find( list, { value: name } );
-	if ( colors.length ) {
+	const markup = getSvgFromName( name );
+	if ( markup ) {
 		res.setHeader( 'Content-Type', 'image/svg+xml' );
-		return res.send( buildSVG( colors ) );
+		return res.send( markup );
 	}
 	res
 		.status( 400 )
 		.send(
-			`Sorry, I don't have ${ name } on file.` +
+			`Sorry, I don't have ${ name } on file. ` +
 				'Maybe you should <a href="https://github.com/ryelle/queeromattic-flags/issues/new?labels=flag%20suggestion">make a suggestion on the repo</a>?'
 		);
 } );
 
 app.listen( app.get( 'port' ), function() {
-	console.log( 'Node app is running at localhost:' + app.get( 'port' ) );
+	console.log( 'Node app is running at localhost: ' + app.get( 'port' ) );
 } );
