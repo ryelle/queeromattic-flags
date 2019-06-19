@@ -1,74 +1,63 @@
+/* eslint-disable no-console */
 /**
  * External dependencies
  */
 import Express from 'express';
-import React from 'react';
-import { find } from 'lodash';
-import { renderToString } from 'react-dom/server';
 import path from 'path';
+import webpack from 'webpack';
 
 /**
  * Internal dependencies
  */
-import assets from '../build/asset-manifest.json';
-import Flag from '../src/components/flag';
-import Skeleton from '../src/components/skeleton';
-import { list } from '../src/utils/colors';
+import { getSvgFromColors, getSvgFromName } from './svg';
 
 const app = Express();
-app.set('port', process.env.PORT || 5000);
-app.set('view engine', 'pug');
-app.set('views', path.resolve(__dirname, './views'));
-app.use('/static', Express.static(path.resolve(__dirname, '../build/static')));
+app.set( 'port', process.env.PORT || 5000 );
+app.set( 'views', path.resolve( __dirname, './views' ) );
 
-const pageTitle = 'WordPress Pride Flag Generator';
+// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// configuration file as a base.
+const config = require( '../webpack.config.js' );
+const compiler = webpack( config );
+app.use(
+	require( 'webpack-dev-middleware' )( compiler, {
+		// noInfo: true,
+		publicPath: config.output.publicPath,
+	} )
+);
+app.use( require( 'webpack-hot-middleware' )( compiler ) );
 
-app.get('/', function(req, res) {
-	const markup = renderToString(<Skeleton />);
-	const jsFile = '/' + assets['main.js'];
-	const cssFile = '/' + assets['main.css'];
-	return res.render('index', { pageTitle, cssFile, jsFile, markup });
-});
+app.use( '/static', Express.static( path.resolve( __dirname, '../build' ) ) );
 
-function buildSVG(colors) {
-	const markup = renderToString(<Flag colors={colors} />);
-	const headers =
-		'<?xml version="1.0" encoding="UTF-8" standalone="no"?>' +
-		'<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">';
-	return (
-		headers +
-		markup.replace(
-			'<svg ',
-			'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" ',
-		)
-	);
-}
+app.get( '/', function( req, res ) {
+	res.sendFile( path.resolve( __dirname, './views/index.html' ) );
+} );
 
-app.get('/hex/:colors.svg', function(req, res) {
+app.get( '/hex/:colors.svg', function( req, res ) {
 	const { colors = '' } = req.params;
-	if (-1 !== colors.indexOf('-')) {
-		const list = colors.split('-');
-		res.setHeader('Content-Type', 'image/svg+xml');
-		return res.send(buildSVG(list.map(item => '#' + item)));
+	const markup = getSvgFromColors( colors );
+	if ( markup ) {
+		res.setHeader( 'Content-Type', 'image/svg+xml' );
+		return res.send( markup );
 	}
-	res.status(400).send("Sorry, I don't understand your colors request!");
-});
+	res.status( 400 ).send( "Sorry, I don't understand your colors request!" );
+} );
 
-app.get('/name/:name.svg', function(req, res) {
+app.get( '/name/:name.svg', function( req, res ) {
 	const { name = '' } = req.params;
-	const { colors = [] } = find(list, { value: name });
-	if (colors.length) {
-		res.setHeader('Content-Type', 'image/svg+xml');
-		return res.send(buildSVG(colors));
+	const markup = getSvgFromName( name );
+	if ( markup ) {
+		res.setHeader( 'Content-Type', 'image/svg+xml' );
+		return res.send( markup );
 	}
 	res
-		.status(400)
+		.status( 400 )
 		.send(
-			`Sorry, I don't have ${name} on file.` +
-				'Maybe you should <a href="https://github.com/ryelle/queeromattic-flags/issues/new?labels=flag%20suggestion">make a suggestion on the repo</a>?',
+			`Sorry, I don't have ${ name } on file. ` +
+				'Maybe you should <a href="https://github.com/ryelle/queeromattic-flags/issues/new?labels=flag%20suggestion">make a suggestion on the repo</a>?'
 		);
-});
+} );
 
-app.listen(app.get('port'), function() {
-	console.log('Node app is running at localhost:' + app.get('port'));
-});
+app.listen( app.get( 'port' ), function() {
+	console.log( 'Node app is running at localhost: ' + app.get( 'port' ) );
+} );

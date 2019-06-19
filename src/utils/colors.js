@@ -1,5 +1,10 @@
-const ACE = ['#333344', '#888899', '#F4F4F5', '#921E79'];
-const ARO = ['#74B95C', '#BEEB82', '#F4F4F5', '#888890', '#33333A'];
+/**
+ * External dependencies
+ */
+import { find, isEqual, random } from 'lodash';
+
+const ACE = [ '#333344', '#888899', '#F4F4F5', '#921E79' ];
+const ARO = [ '#74B95C', '#BEEB82', '#F4F4F5', '#888890', '#33333A' ];
 const AGENDER = [
 	'#333344',
 	'#888899',
@@ -9,7 +14,7 @@ const AGENDER = [
 	'#888899',
 	'#333344',
 ];
-const BI = ['#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673'];
+const BI = [ '#1D439B', '#1D439B', '#744E97', '#D71673', '#D71673' ];
 const LGBTQ = [
 	'#DF4C3E',
 	'#F47C3B',
@@ -28,12 +33,22 @@ const LGBTQ_POC = [
 	'#3EA7D5',
 	'#8B79B8',
 ];
-const GQ = ['#74B95C', '#F4F4F5', '#8B79B7'];
-const GF = ['#EC77A0', '#F4F4F5', '#9B48A3', '#222233', '#1D439B'];
-const NB = ['#FDB813', '#F4F4F5', '#9B48A3', '#333344'];
-const PAN = ['#D71673', '#FDB813', '#3EA7D5'];
-const POLY = ['#D71673', '#74B95C', '#219CD3'];
-const TRANS = ['#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6'];
+const GQ = [ '#74B95C', '#F4F4F5', '#8B79B7' ];
+const GF = [ '#EC77A0', '#F4F4F5', '#9B48A3', '#222233', '#1D439B' ];
+const NB = [ '#FDB813', '#F4F4F5', '#9B48A3', '#333344' ];
+const PAN = [ '#D71673', '#FDB813', '#3EA7D5' ];
+const POLY = [ '#D71673', '#74B95C', '#219CD3' ];
+const TRANS = [ '#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6' ];
+const PLACEHOLDER = '#C8C8CC';
+const LES = [
+	'#A40061',
+	'#B75592',
+	'#D063A6',
+	'#F4F4F5',
+	'#E4ACCF',
+	'#C54E54',
+	'#8A1E04',
+];
 
 export const list = [
 	{
@@ -67,6 +82,16 @@ export const list = [
 		colors: GQ,
 	},
 	{
+		label: 'Intersex',
+		value: 'intersex',
+		colors: [],
+	},
+	{
+		label: 'Lesbian',
+		value: 'lesbian',
+		colors: LES,
+	},
+	{
 		label: 'LGBTQ #MoreColorMorePride',
 		value: 'more-color',
 		colors: LGBTQ_POC,
@@ -96,10 +121,16 @@ export const list = [
 		value: 'transgender',
 		colors: TRANS,
 	},
+	{
+		label: 'Custom',
+		value: 'custom',
+		colors: [ PLACEHOLDER ],
+	},
 ];
 
 export const ALL_COLORS = [
 	// Row 1
+	'#5E4728',
 	'#000105',
 	'#222228',
 	'#33333a',
@@ -107,23 +138,42 @@ export const ALL_COLORS = [
 	'#C8C8CC',
 	'#F4F4F5',
 	// Row 2
+	'#8A1E04',
+	'#C54E54',
 	'#DF4C3E',
 	'#F47C3B',
 	'#FDB813',
+	'#F8CA00',
 	'#FFE28C',
+	// Row 3
 	'#BEEB82',
 	'#74B95C',
-	// Row 3
 	'#61CDF6',
 	'#3EA7D5',
 	'#1D439B',
 	'#744E97',
 	'#8B79B8',
+	// Row 4
 	'#9B48A3',
-	// Row 3
 	'#921E79',
+	'#B75592',
+	'#D063A6',
 	'#D71673',
 	'#EC77A0',
 	'#F7ABB8',
-	'#5E4728',
 ];
+
+// Uses global list
+export function getRandomFlag() {
+	const index = random( list.length - 1 );
+	return list[ index ];
+}
+
+export function getSvgUrl( colors ) {
+	const existingFlag = find( list, ( item ) => isEqual( colors, item.colors ) );
+	if ( existingFlag ) {
+		return `/name/${ existingFlag.value }.svg`;
+	}
+	const colorsList = colors.map( ( c ) => c.replace( '#', '' ) ).join( '-' );
+	return `/hex/${ colorsList }.svg`;
+}
