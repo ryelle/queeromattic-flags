@@ -11,21 +11,24 @@ import webpack from 'webpack';
  */
 import { getSvgFromColors, getSvgFromName } from './svg';
 
+const mode = process.env.NODE_ENV || 'development';
 const app = Express();
 app.set( 'port', process.env.PORT || 5000 );
 app.set( 'views', path.resolve( __dirname, './views' ) );
 
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
-// configuration file as a base.
-const config = require( '../webpack.config.js' );
-const compiler = webpack( config );
-app.use(
-	require( 'webpack-dev-middleware' )( compiler, {
-		// noInfo: true,
-		publicPath: config.output.publicPath,
-	} )
-);
-app.use( require( 'webpack-hot-middleware' )( compiler ) );
+if ( 'development' === mode ) {
+	// Tell express to use the webpack-dev-middleware and use the webpack.config.js
+	// configuration file as a base.
+	const config = require( '../webpack.config.js' );
+	const compiler = webpack( config );
+	app.use(
+		require( 'webpack-dev-middleware' )( compiler, {
+			// noInfo: true,
+			publicPath: config.output.publicPath,
+		} )
+	);
+	app.use( require( 'webpack-hot-middleware' )( compiler ) );
+}
 
 app.use( '/static', Express.static( path.resolve( __dirname, '../build' ) ) );
 

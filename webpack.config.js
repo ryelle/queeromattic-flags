@@ -6,19 +6,20 @@ const webpack = require( 'webpack' );
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const BUILD_DIR = path.join( __dirname, 'build' );
+const isDev = 'development' === NODE_ENV;
 
 module.exports = {
 	mode: NODE_ENV,
 	entry: {
 		index: [
-			'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-			'react-hot-loader/patch',
+			isDev ? 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000' : false,
+			isDev ? 'react-hot-loader/patch' : false,
 			'./src/index.js',
-		],
+		].filter( Boolean ),
 	},
 	output: {
 		filename: '[name].js',
-		path: path.resolve( BUILD_DIR, '/js' ),
+		path: path.resolve( BUILD_DIR, 'js' ),
 		publicPath: '/',
 	},
 	devServer: {
@@ -45,6 +46,6 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new webpack.HotModuleReplacementPlugin(),
-	],
+		isDev ? new webpack.HotModuleReplacementPlugin() : false,
+	].filter( Boolean ),
 };

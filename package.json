@@ -3,12 +3,13 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"build": "NODE_ENV=production babel-node server/index.js",
+		"build": "NODE_ENV=production webpack",
+		"preserver": "npm run build",
+		"server": "NODE_ENV=production babel-node server/index.js",
 		"lint:js": "wp-scripts lint-js src",
 		"lint:pkg-json": "wp-scripts lint-pkg-json .",
 		"start": "babel-node server/index.js",
-		"test": "wp-scripts test-unit-js",
-		"xpreserver": "npm run build"
+		"test": "wp-scripts test-unit-js"
 	},
 	"eslintConfig": {
 		"extends": [
