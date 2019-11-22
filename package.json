@@ -46,9 +46,5 @@
 		"webpack-dev-server": "3.9.0",
 		"webpack-hot-middleware": "2.25.0",
 		"whatwg-fetch": "3.0.0"
-	},
-	"engines": {
-		"node": "10.15.3",
-		"npm": "6.9.0"
 	}
 }
