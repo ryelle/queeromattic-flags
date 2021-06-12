@@ -1,58 +1,29 @@
 /**
  * External dependencies
  */
-import React, { Fragment } from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { createGlobalStyle } from 'styled-components';
+import { render } from 'react-dom';
 
 /**
  * Internal dependencies
  */
-import App from './app';
-import store from './store';
+import './style.css';
+import Canvas from './canvas';
+import Controls from './controls';
+import { FlagProvider } from './use-flag';
+import { getFlag } from './utils/colors';
+import Layout from './layout';
 
-const GlobalStyle = createGlobalStyle`
-	:root {
-		--primary-color: #3EA7D5;
-		--warning-color: #c25e4a;
-	}
+const preset = window.location.hash.replace( '#', '' );
+const initialFlag = getFlag( preset );
 
-	[disabled] {
-		--warning-color: #e8bcbc;
-	}
+function App() {
+	return (
+		<FlagProvider value={ initialFlag }>
+			<Layout sidebar={ <Controls /> }>
+				<Canvas />
+			</Layout>
+		</FlagProvider>
+	);
+}
 
-	body {
-		margin: 0;
-		padding: 0;
-		font-family: sans-serif;
-		line-height: 1.5;
-	}
-
-	input,
-	select {
-		border: 1px solid #ccc;
-		font-size: inherit;
-	}
-
-	button, select {
-		cursor: pointer;
-	}
-
-	*:focus {
-		outline-color: var( --primary-color );
-	}
-`;
-
-// This is a hack to reset the DOM. Why is this needed?
-document.getElementById( 'root' ).innerHTML = '';
-
-ReactDOM.render(
-	<Fragment>
-		<GlobalStyle />
-		<Provider store={ store }>
-			<App />
-		</Provider>
-	</Fragment>,
-	document.getElementById( 'root' )
-);
+render( <App />, document.getElementById( 'container' ) );

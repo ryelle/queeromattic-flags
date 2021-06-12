@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { find, isEqual, random } from 'lodash';
+import { isEqual, random } from 'lodash';
 
 const ACE = [ '#333344', '#888899', '#F4F4F5', '#921E79' ];
 const ARO = [ '#74B95C', '#BEEB82', '#F4F4F5', '#888890', '#33333A' ];
@@ -39,7 +39,6 @@ const NB = [ '#FDB813', '#F4F4F5', '#9B48A3', '#333344' ];
 const PAN = [ '#D71673', '#FDB813', '#3EA7D5' ];
 const POLY = [ '#D71673', '#74B95C', '#219CD3' ];
 const TRANS = [ '#61CDF6', '#F7ABB8', '#F4F4F5', '#F7ABB8', '#61CDF6' ];
-const PLACEHOLDER = '#C8C8CC';
 const LESBIAN_LP = [
 	'#A40061',
 	'#B75592',
@@ -106,7 +105,7 @@ export const list = [
 		colors: LESBIAN,
 	},
 	{
-		label: 'LGBTQ #MoreColorMorePride',
+		label: 'LGBTQ (Philly)',
 		value: 'more-color',
 		colors: LGBTQ_POC,
 	},
@@ -134,11 +133,6 @@ export const list = [
 		label: 'Transgender',
 		value: 'transgender',
 		colors: TRANS,
-	},
-	{
-		label: 'Custom',
-		value: 'custom',
-		colors: [ PLACEHOLDER ],
 	},
 ];
 
@@ -177,17 +171,37 @@ export const ALL_COLORS = [
 	'#F7ABB8',
 ];
 
+export function getRandomColor() {
+	const index = random( ALL_COLORS.length - 1 );
+	return ALL_COLORS[ index ];
+}
+
 // Uses global list
 export function getRandomFlag() {
 	const index = random( list.length - 1 );
 	return list[ index ];
 }
 
-export function getSvgUrl( colors ) {
-	const existingFlag = find( list, ( item ) => isEqual( colors, item.colors ) );
-	if ( existingFlag ) {
-		return `/name/${ existingFlag.value }.svg`;
+export function getFlag( preset = false ) {
+	let flag;
+	if ( ! preset ) {
+		flag = getRandomFlag();
+	} else {
+		flag = list.find( ( item ) => item.value === preset );
 	}
-	const colorsList = colors.map( ( c ) => c.replace( '#', '' ) ).join( '-' );
-	return `/hex/${ colorsList }.svg`;
+
+	// If still no flag, get a random one.
+	if ( ! flag ) {
+		flag = getRandomFlag();
+	}
+
+	return flag;
+}
+
+export function getFlagFromName( name ) {
+	return list.find( ( item ) => item.value === name );
+}
+
+export function getFlagFromColors( colors ) {
+	return list.find( ( item ) => isEqual( colors, item.colors ) );
 }

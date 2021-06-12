@@ -1,51 +1,58 @@
 {
 	"name": "queer-flags",
-	"version": "0.1.0",
+	"version": "2.0.0",
+	"description": "Customizable queer pride flags using the WordPress pride template.",
 	"private": true,
 	"scripts": {
+		"start": "hs ./build",
+		"watch": "webpack serve --open",
 		"build": "NODE_ENV=production webpack",
-		"preserver": "npm run build",
-		"server": "NODE_ENV=production babel-node server/index.js",
-		"lint:js": "eslint src",
-		"start": "babel-node server/index.js",
-		"test": "wp-scripts test-unit-js"
+		"lint:js": "eslint src"
 	},
+	"dependencies": {
+		"@babel/core": "^7.14.3",
+		"@babel/plugin-transform-react-jsx": "^7.14.3",
+		"@babel/preset-env": "^7.14.4",
+		"@babel/preset-react": "^7.13.13",
+		"@reach/router": "^1.3.4",
+		"@svgr/webpack": "^5.5.0",
+		"@wordpress/eslint-plugin": "^9.0.6",
+		"@wordpress/prettier-config": "^1.0.5",
+		"babel-loader": "^8.2.2",
+		"classnames": "^2.3.1",
+		"core-js": "^3.13.1",
+		"css-loader": "^5.2.6",
+		"eslint": "^7.27.0",
+		"get-contrast": "^3.0.0",
+		"html-webpack-plugin": "^5.3.1",
+		"http-server": "^0.12.3",
+		"lodash": "^4.17.21",
+		"postcss": "^8.3.0",
+		"postcss-loader": "^5.3.0",
+		"postcss-nesting": "^8.0.1",
+		"postcss-preset-env": "6.7.0",
+		"prettier": "npm:wp-prettier@1.19.1",
+		"react": "^17.0.2",
+		"react-color": "^2.19.3",
+		"react-dom": "^17.0.2",
+		"react-redux": "^7.2.4",
+		"redux": "^4.1.0",
+		"style-loader": "^2.0.0",
+		"webpack": "^5.38.1",
+		"webpack-cli": "^4.7.0"
+	},
+	"browserslist": [
+		"> 1%",
+		"ie >= 11"
+	],
 	"eslintConfig": {
 		"extends": [
 			"plugin:@wordpress/eslint-plugin/recommended"
-		],
-		"rules": {
-			"@wordpress/dependency-group": "off"
-		}
+		]
 	},
-	"dependencies": {
-		"@babel/core": "7.7.2",
-		"@babel/node": "7.7.0",
-		"@babel/preset-env": "7.7.1",
-		"@babel/preset-react": "7.7.0",
-		"@wordpress/eslint-plugin": "3.2.0",
-		"babel-loader": "8.0.6",
-		"babel-plugin-styled-components": "1.10.6",
-		"classnames": "2.2.6",
-		"eslint": "6.6.0",
-		"express": "4.17.1",
-		"get-contrast": "2.0.0",
-		"gridicons": "3.3.1",
-		"jest": "24.9.0",
-		"react": "16.12.0",
-		"react-color": "2.17.3",
-		"react-dom": "16.12.0",
-		"react-hot-loader": "4.12.18",
-		"react-redux": "7.1.3",
-		"redux": "4.0.4",
-		"styled-components": "4.4.1",
-		"stylelint-config-styled-components": "0.1.1",
-		"stylelint-processor-styled-components": "1.8.0",
-		"webpack": "4.41.2",
-		"webpack-cli": "3.3.10",
-		"webpack-dev-middleware": "3.7.2",
-		"webpack-dev-server": "3.9.0",
-		"webpack-hot-middleware": "2.25.0",
-		"whatwg-fetch": "3.0.0"
+	"prettier": "@wordpress/prettier-config",
+	"devDependencies": {
+		"mini-css-extract-plugin": "^1.6.0",
+		"webpack-dev-server": "^3.11.2"
 	}
 }
